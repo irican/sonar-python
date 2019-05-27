@@ -1,5 +1,5 @@
 {
-  "title": "Track breaches of an XPath rule",
+  "title": "跟踪违反XPath规则的行为",
   "type": "CODE_SMELL",
   "status": "ready",
   "tags": [

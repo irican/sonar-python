@@ -1,9 +1,9 @@
-<p>Having too many return statements in a function increases the function's essential complexity because the flow of execution is broken each time a
-return statement is encountered. This makes it harder to read and understand the logic of the function.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With the default threshold of 3:</p>
+<p>在函数中包含太多的返回语句会增加函数的基本复杂性，因为每次执行时都会中断执行流程
+遇到return语句。 这使得阅读和理解函数的逻辑变得更加困难。</p>
+<h2>不符合规范的代码示例</h2>
+<p>默认阈值为3:</p>
 <pre>
-def fun():          # Noncompliant as there are 4 return statements
+def fun():          # 由于有4个return语句因此不符合规范
   if condition1:
     return True
   elif condition2:
@@ -13,4 +13,3 @@ def fun():          # Noncompliant as there are 4 return statements
   return False
 }
 </pre>
-

@@ -1,5 +1,5 @@
 {
-  "title": "\"__exit__\" should accept type, value, and traceback arguments",
+  "title": "\“__ exit __ \”应该接受type，value和traceback参数",
   "type": "BUG",
   "status": "ready",
   "remediation": {

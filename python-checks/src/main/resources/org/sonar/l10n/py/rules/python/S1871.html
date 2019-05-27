@@ -1,6 +1,5 @@
-<p>Having two branches in the same <code>if</code> structure with the same implementation is at best duplicate code, and at worst a coding error. If
-the same logic is truly needed for both instances, then they should be combined.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在具有相同实现的相同<code>if</code>结构中具有两个分支是最好的重复代码，并且最坏的是编码错误。如果两个实例确实需要相同的逻辑，那么它们应该合并。</p> 
+<h2>不符合规范的代码示例</h2>
 <pre>
 if 0 &lt;= a &lt; 10:
     do_first()
@@ -8,24 +7,24 @@ if 0 &lt;= a &lt; 10:
 elif 10 &lt;= a &lt; 20:
     do_the_other_thing()
 elif 20 &lt;= a &lt; 50:
-    do_first()         # Noncompliant; duplicates first condition
+    do_first()         # 不符合规范的; 重复第一个条件
     do_second()
 </pre>
-<h2>Exceptions</h2>
-<p>Blocks in an <code>if</code> chain that contain a single line of code are ignored.</p>
+<h2>例外</h2>
+<p>包含单行代码的<code> if </code>链中的块将被忽略。</p>
 <pre>
 if 0 &lt;= a &lt; 10:
     do_first()
 elif 10 &lt;= a &lt; 20:
     do_the_other_thing()
 elif 20 &lt;= a &lt; 50:
-    do_first()         # no issue, usually this is done on purpose to increase the readability
+    do_first()         # 没异常，通常这是为了提高可读性
 </pre>
-<p>But this exception does not apply when all branches have the same single line of code.</p>
+<p>但是，当所有分支具有相同的单行代码时，此例外就不适用了。</p>
 <pre>
 if 0 &lt;= a &lt; 10:
     do_first()
 elif 20 &lt;= a &lt; 50:
-    do_first()         # Noncompliant, this might have been done on purpose but probably not
+    do_first()         # 不合规，这可能是故意的，但也可能不是
 </pre>
 

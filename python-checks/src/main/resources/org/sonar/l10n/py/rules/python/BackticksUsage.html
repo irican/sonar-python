@@ -1,9 +1,9 @@
-<p>Backticks are a deprecated alias for <code>repr()</code>. Don't use them any more, the syntax was removed in Python 3.0.</p>
-<h2>Noncompliant Code Example</h2>
+<p>反引号是<code>repr()</code>的弃用别名. 不要再使用它们了，Python 3.0中删除了它的语法.</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-return `num`  # Noncompliant
+return `num`  # 不符合规范
 </pre>
-<h2>Compliant Solution</h2>
+<h2>符合规范解决方案</h2>
 <pre>
 return repr(num)
 </pre>

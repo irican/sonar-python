@@ -1,13 +1,10 @@
-<p>The new style of class creation, with the declaration of a parent class, created a unified object model in Python, so that the type of an
-instantiated class is equal to its class. In Python 2.2-2.7, this is not the case for old-style classes. In Python 3+ all classes are new-style
-classes. However, since the behavior can differ from 2.2+ to 3+, explicitly inheriting from <code>object</code> (if there is no better candidate) is
-recommended.</p>
-<h2>Noncompliant Code Example</h2>
+<p>新的类创建方式，通过父类的声明，在Python中创建了一个统一的对象模型，因此实例化类的类型等于其类。 在Python 2.2-2.7中，旧式类不是这种情况。 在Python 3+中，所有类都是新式的类。 但是，由于行为可能不同于2.2+到3+，因此建议明确继承<code> object </code>（如果没有更好的候选者）。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 class MyClass():
     pass
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 class MyClass(object):
     pass

@@ -1,8 +1,8 @@
-<p>It's confusing to have a class member with the same name (case differences aside) as its enclosing class. This is particularly so when you consider
-the common practice of naming a class instance for the class itself.</p>
-<p>Best practice dictates that any field or member with the same name as the enclosing class be renamed to be more descriptive of the particular
-aspect of the class it represents or holds.</p>
-<h2>Noncompliant Code Example</h2>
+<p>让一个具有相同名称的类成员（不区分大小写）作为其封闭类令人困惑。 当你考虑时尤其如此
+为类本身命名类实例的常见做法。</p>
+<p>最佳实践要求重命名任何与封闭类同名的字段或成员，以更具描述性
+它所代表或持有的阶级方面。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 class Foo:
   foo = ''
@@ -11,9 +11,9 @@ class Foo:
     ...
 
 foo = Foo()
-foo.getFoo() # what does this return?
+foo.getFoo() # 这会返回什么？
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 class Foo:
   name = ''
@@ -25,3 +25,19 @@ foo = Foo()
 foo.getName()
 </pre>
 
+<p>让一个具有相同名称的类成员（不区分大小写）作为其封闭类令人困惑。 当你考虑时尤其如此
+为类本身命名类实例的常见做法。</ p>
+<p>最佳实践要求重命名与封闭类同名的任何字段或成员，以更好地描述它所代表或保留的类的特定方面。</ p>
+<h2>不符合规范的代码示例</ h2>
+<PRE>
+Foo类：
+   foo =''
+
+   def getFoo（self）：
+    ...
+
+foo = Foo（）
+foo.getFoo（）＃这会返回什么？
+</ PRE>
+<h2>合规解决方案</ h2>
+<PRE>

@@ -1,13 +1,12 @@
-<p>Class methods that don't access instance data can and should be static because they yield more performant code.</p>
-<p>To implement a static method in Python one should use either <code>@classmethod</code> or <code>@staticmethod</code>. A class method receives the
-class as implicit first argument, just like an instance method receives the instance. A static method does not receive an implicit first argument.</p>
-<h2>Noncompliant Code Example</h2>
+<p>不访问实例数据的类方法可以而且应该是静态的，因为它们会产生更高性能的代码。</p>
+<p>要在Python中实现静态方法，应该使用<code> @classmethod </code>或<code> @staticmethod </ code>。 类方法接收类作为隐式的第一个参数，就像实例方法接收实例一样。 静态方法不会收到隐含的第一个参数。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 class Utilities:
     def do_the_thing(self, arg1, arg2, ...):  # Noncompliant
         #...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 class Utilities:
     @classmethod
@@ -21,6 +20,6 @@ class Utilities:
     def do_the_thing(arg1, arg2, ...):
         #...
 </pre>
-<h2>Exceptions</h2>
-<p>Methods which raise or may raise a <code>NotImplementedError</code> are ignored.</p>
+<h2>例外</h2>
+<p>忽略引发或可能引发<code> NotImplementedError </code>的方法。</p>
 

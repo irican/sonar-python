@@ -1,17 +1,15 @@
-<p>A chain of <code>if</code>/<code>else if</code> statements is evaluated from top to bottom. At most, only one branch will be executed: the first
-one with a condition that evaluates to <code>true</code>. </p>
-<p>Therefore, duplicating a condition automatically leads to dead code. Usually, this is due to a copy/paste error. At best, it's simply dead code and
-at worst, it's a bug that is likely to induce further bugs as the code is maintained, and obviously it could lead to unexpected behavior. </p>
-<h2>Noncompliant Code Example</h2>
+<p> <code> if </code> / <code> else if</code>链，语句从上到下进行评估。 最多只执行一个分支：第一个分支的条件为<code> true </code>。</p>
+<p>因此，复制条件会自动导致死代码。通常，这是由于复制/粘贴错误。最好的情况是，它只是死代码，最糟糕的是，它是一个可能在代码维护时引发进一步错误的错误，显然它可能导致意外行为。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 if param == 1:
   openWindow()
 elif param == 2:
   closeWindow()
-elif param == 1:            # Noncompliant
+elif param == 1:            #不符合规范的
   moveWindowToTheBackground()
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 if param == 1:
   openWindow()
@@ -20,9 +18,8 @@ elif param == 2:
 elif param == 3:
   moveWindowToTheBackground()
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - Detect and remove code that has no effect or is never
-  executed </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - 检测并删除无效或永不执行的代码</li>
 </ul>
 

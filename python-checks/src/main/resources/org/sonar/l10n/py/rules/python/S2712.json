@@ -1,5 +1,5 @@
 {
-  "title": "\"return\" and \"yield\" should not be used in the same function",
+  "title": "\“return \”和\“yield \”不应该在同一个函数中使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

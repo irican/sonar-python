@@ -1,16 +1,15 @@
-<p>Nested <code>if</code>, <code>for</code>, <code>while</code>, <code>try</code>, and <code>with</code> statements are key ingredients for making
-what's known as "Spaghetti code". Such code is hard to read, refactor and therefore maintain.</p>
-<h2>Noncompliant Code Example</h2>
-<p>The following code snippet illustrates this rule with the default threshold of 3.</p>
+<p>嵌套 <code>if</code>, <code>for</code>, <code>while</code>, <code>try</code>, and <code>with</code>语句是制作所谓“意大利面条代码”的关键因素。 这样的代码很难阅读，重构并因此维护。</p>
+<h2>不符合规范的代码示例</h2>
+<p>以下代码段说明了此规则，默认阈值为3。</p>
 <pre>
   if condition1:           # Compliant - depth = 1
     # ...
     if condition2:         # Compliant - depth = 2
       # ...
-      for i in range(10):  # Compliant - depth = 3, not exceeding the limit
+      for i in range(10):  # Compliant - depth = 3, 不超过限制
         # ...
         if condition4:     # Non-Compliant - depth = 4
-          if condition5:   # Depth = 5, exceeding the limit, but issues are only reported on depth = 4
+          if condition5:   # Depth = 5, 超出限制，但问题仅在depth= 4时报告
             # ...
 </pre>
 

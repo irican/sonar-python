@@ -1,5 +1,5 @@
 {
-  "title": "\"pass\" should not be used needlessly",
+  "title": "不应该不必要地使用\"pass\"",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

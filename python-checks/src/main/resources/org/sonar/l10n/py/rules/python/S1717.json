@@ -1,5 +1,5 @@
 {
-  "title": "\"\\\" should only be used as an escape character outside of raw strings",
+  "title": "\"\\\"只应用作原始字符串之外的转义字符",
   "type": "BUG",
   "status": "ready",
   "remediation": {

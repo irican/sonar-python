@@ -1,5 +1,5 @@
 {
-  "title": "\"<>\" should not be used to test inequality",
+  "title": "\"<>\" 不应用于检验不平等",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

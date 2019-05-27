@@ -1,5 +1,5 @@
 {
-  "title": "Nested blocks of code should not be left empty",
+  "title": "嵌套代码块不应保留为空",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

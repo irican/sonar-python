@@ -1,13 +1,11 @@
-<p>TODO and FIXME comments are typically intended to be short-lived; they are placeholders and reminders that programmers leave for themselves.
-Unfortunately, even with the best of intentions, those comments are not always acted on and removed in a timely manner. Thus, they can become
-mysterious, lingering cruft in a code base, reducing both readability and understand-ability.</p>
-<p>This rule flags all FIXME and TODO comments that do not have an attribution matching the specified regular expression immediately after the FIXME
-or TODO. Ideally, such comments will also contain information about what needs to be fixed or done, but this rule does not enforce that.</p>
-<h2>Noncompliant Code Example</h2>
+<p>TODO和FIXME评论通常是短暂的; 它们是占位符和提醒程序员自己离开。
+不幸的是，即使有最好的意图，这些评论并不总是及时采取行动和删除。 因此，它们可能变得神秘，在代码库中挥之不去，降低了可读性和理解能力</p>
+<p>此规则标记所有FIXME和TODO注释，这些注释在FIXME或TODO之后不会立即与指定的正则表达式匹配。 理想情况下，此类评论还将包含有关需要修复或完成的内容的信息，但此规则并未强制执行此操作。</p>
+<h2>未符合规范的代码示例</h2>
 <pre>
 # TODO
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 # TODO(ganncamp) per the business partners, more checks needed
 </pre>

@@ -1,10 +1,9 @@
-<p>Python has no pre/post increment/decrement operator. For instance, <code>x++</code> and <code>x--</code> will fail to parse. More importantly,
-<code>++x</code> and <code>--x</code> will do nothing. To increment a number, simply write <code>x += 1</code>.</p>
-<h2>Noncompliant Code Example</h2>
+<p>Python没有前/后递增/递减运算符。 例如，<code>x++</code> 和 <code>x--</code> 将无法解析。 更重要的是，<code>++x</code> 和 <code>--x</code> 什么都不用动。 要增加数字，只需编写 <code>x += 1</code>.</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-++x # Noncompliant
+++x # 不符合规范
 </pre>
-<h2>Compliant Solution</h2>
+<h2>符合规范的解决方案</h2>
 <pre>
 x += 1
 </pre>

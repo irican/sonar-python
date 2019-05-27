@@ -1,13 +1,12 @@
-<p>Sharing some naming conventions is a key point to make it possible for a team to efficiently collaborate. This rule allows to check that all method
-names match a provided regular expression.</p>
-<h2>Noncompliant Code Example</h2>
-<p>With default provided regular expression: ^[a-z_][a-z0-9_]{2,30}$</p>
+<p>共享一些命名约定是使一个团队能够有效协作的关键点。 此规则允许检查所有方法名称是否与提供的正则表达式匹配。</p>
+<h2>不符合规范的代码示例</h2>
+<p>默认提供正则表达式: ^[a-z_][a-z0-9_]{2,30}$</p>
 <pre>
 class MyClass:
     def MyMethod(a,b):
         ...
 </pre>
-<h2>Compliant Solution</h2>
+<h2>符合规范的解决方案</h2>
 <pre>
 class MyClass:
     def my_method(a,b):

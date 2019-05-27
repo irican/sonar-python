@@ -1,5 +1,5 @@
 {
-  "title": "A field should not duplicate the name of its containing class",
+  "title": "字段不应复制其包含类的名称",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,5 +1,5 @@
 {
-  "title": "Jump statements should not be followed by dead code",
+  "title": "跳转语句不应该跳到死代码",
   "type": "BUG",
   "status": "ready",
   "remediation": {

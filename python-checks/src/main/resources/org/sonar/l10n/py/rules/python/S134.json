@@ -1,5 +1,5 @@
 {
-  "title": "Control flow statements \"if\", \"for\", \"while\", \"try\" and \"with\" should not be nested too deeply",
+  "title": "控制流语句\“if \”，\“for \”，\“while \”，\“try \”和\“with \”不应该嵌套得太深",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

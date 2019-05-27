@@ -1,5 +1,5 @@
 {
-  "title": "Docstrings should be defined",
+  "title": "Docstrings是应该进行定义的",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

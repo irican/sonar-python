@@ -1,32 +1,29 @@
-<p>Using the same value on either side of a binary operator is almost always a mistake. In the case of logical operators, it is either a copy/paste
-error and therefore a bug, or it is simply wasted code, and should be simplified. In the case of bitwise operators and most binary mathematical
-operators, having the same value on both sides of an operator yields predictable results, and should be simplified.</p>
-<h2>Noncompliant Code Example</h2>
+<p>在二元运算符的任何一侧使用相同的值几乎总是一个错误。在逻辑运算符的情况下，它是复制/粘贴错误，因此是一个错误，或者它只是浪费的代码，应该简化。在按位运算符和大多数二元数学运算符的情况下，在运算符的两边具有相同的值会产生可预测的结果，并且应该简化。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-if a == a: # Noncompliant
+if a == a: #不符合规范的
     work()
 
-if  a != a: # Noncompliant
+if  a != a: #不符合规范的
     work()
 
-if  a == b and a == b: # Noncompliant
+if  a == b and a == b: #不符合规范的
     work()
 
-if a == b or a == b: # Noncompliant
+if a == b or a == b: #不符合规范的
     work()
 
-j = 5 / 5 # Noncompliant
-k = 5 - 5 # Noncompliant
+j = 5 / 5 #不符合规范的
+k = 5 - 5 #不符合规范的
 </pre>
-<h2>Exceptions</h2>
-<p>The following are ignored:</p>
+<h2>例外</h2>
+<p>以下均被忽略</p>
 <ul>
-  <li> The expression <code>1 &lt;&lt; 1</code> </li>
+  <li> 表达式 <code>1 &lt;&lt; 1</code> </li>
 </ul>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - Detect and remove code that has no effect or is never
-  executed </li>
-  <li> {rule:python:S1656} - Implements a check on <code>=</code>. </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - 检测并删除无效或永不执行的代码 </li>
+  <li> {rule:python:S1656} - 对<code> = </code>执行检查。</li>
 </ul>
 

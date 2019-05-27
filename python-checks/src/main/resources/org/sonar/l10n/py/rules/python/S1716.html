@@ -1,14 +1,13 @@
-<p><code>break</code> and <code>continue</code> are unstructured control flow statements which make code harder to read. Additionally, more recent
-versions of Python raise a SyntaxError when modules containing <code>break</code> or <code>continue</code> outside of a loop are imported.</p>
-<p>Therefore, these statements should not be used outside of loops. </p>
-<h2>Noncompliant Code Example</h2>
+<p><code>break</code> 和 <code>continue</code> 是非结构化的控制流语句，这使得代码难以阅读。 此外，当导入在循环外部包含 <code>break</code> 或者 <code>continue</code> 的模块时，更新版本的Python会引发SyntaxError。</p>
+<p>因此，不应在循环之外使用这些语句。 </p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 narg=len(sys.argv)
 if narg == 1:
         print('@Usage: input_filename nelements nintervals')
         break
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 if narg == 1:
         print('@Usage: input_filename nelements nintervals')

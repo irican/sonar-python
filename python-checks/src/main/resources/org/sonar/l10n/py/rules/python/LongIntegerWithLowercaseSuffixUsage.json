@@ -1,5 +1,5 @@
 {
-  "title": "Long suffix \"L\" should be upper case",
+  "title": "长的后缀为 \"L\" 应该是上面的案例",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

@@ -1,16 +1,13 @@
-<p>Looking at the set of methods and fields in a <code>class</code> and finding two that differ only by capitalization is confusing to users of the
-class.</p>
-<p>This situation may simply indicate poor naming. Method names should be action-oriented, and thus contain a verb, which is unlikely in the case
-where both a method and a field have the same name (with or without capitalization differences). However, renaming a public method could be disruptive
-to callers. Therefore renaming the member is the recommended action.</p>
-<h2>Noncompliant Code Example</h2>
+<p>查看<code> class </code>中的一组方法和字段，找到两个仅按大小写区别的方法和字段，这会使该类用户感到困惑。</p>
+<p>这种情况可能只表示命名不佳。方法名称应该是面向操作的，因此包含一个动词，在方法和字段具有相同名称（有或没有大小写差异）的情况下，这是不太可能的。但是，重命名公共方法可能会对呼叫者造成干扰。因此，建议重命名成员。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 class SomeClass:
     lookUp = false
-    def lookup():       # Non-compliant; method name differs from field name only by capitalization
+    def lookup():       # 不符合规范的; 方法名称与字段名称的区别仅在于大小写
         pass
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 class SomeClass:
     lookUp = false

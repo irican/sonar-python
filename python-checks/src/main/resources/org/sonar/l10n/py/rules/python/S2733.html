@@ -1,11 +1,10 @@
-<p>The <code>__exit__</code> method is invoked with four arguments: self, type, value and traceback. Leave one of these out of the method declaration
-and the result will be a <code>TypeError</code> at runtime.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用四个参数调用<code> __ exit __ </code>方法：self，type，value和traceback。 将其中一个保留在方法声明之外，结果将是运行时的<code> TypeError </code>。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 class MyClass:
    def __enter__(self):
        pass
-   def __exit__(self, exc_type, exc_val):  # Noncompliant
+   def __exit__(self, exc_type, exc_val):  # 不符合规范的
        pass
 </pre>
 

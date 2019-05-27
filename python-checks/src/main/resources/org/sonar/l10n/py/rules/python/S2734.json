@@ -1,5 +1,5 @@
 {
-  "title": "\"__init__\" should not return a value",
+  "title": "\"__init__\" 不应该返回一个值",
   "type": "BUG",
   "status": "ready",
   "remediation": {

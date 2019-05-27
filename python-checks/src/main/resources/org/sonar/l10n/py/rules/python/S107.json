@@ -1,5 +1,5 @@
 {
-  "title": "Functions, methods and lambdas should not have too many parameters",
+  "title": "函数、方法和lambda们的参数不应太多",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

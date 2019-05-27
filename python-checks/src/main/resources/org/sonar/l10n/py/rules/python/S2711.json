@@ -1,5 +1,5 @@
 {
-  "title": "\"yield\" and \"return\" should not be used outside functions",
+  "title": "\“yield \”和\“return \”不应该在函数外部使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

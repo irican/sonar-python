@@ -1,5 +1,5 @@
 {
-  "title": "Methods and field names should not differ only by capitalization",
+  "title": "方法和字段名称不应仅仅通过大写来区分",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

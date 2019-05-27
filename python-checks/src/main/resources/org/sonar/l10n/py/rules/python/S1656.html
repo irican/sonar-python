@@ -1,16 +1,14 @@
-<p>There is no reason to re-assign a variable to itself. Either this statement is redundant and should be removed, or the re-assignment is a mistake
-and some other value or variable was intended for the assignment instead.</p>
-<h2>Noncompliant Code Example</h2>
+<p>没有理由为自己重新分配变量。 要么这个语句是多余的则应该删除，或者重新赋值是错误的，而其他一些值或变量则用于赋值。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 name = name
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规解决方案</h2>
 <pre>
 name = other.name
 </pre>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - Detect and remove code that has no effect or is never
-  executed </li>
+  <li> <a href="https://www.securecoding.cert.org/confluence/x/NYA5">CERT, MSC12-C.</a> - 检测并删除无效或永不执行的代码</li>
 </ul>
 

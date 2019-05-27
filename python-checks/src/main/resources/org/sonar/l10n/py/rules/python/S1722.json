@@ -1,5 +1,5 @@
 {
-  "title": "New-style classes should be used",
+  "title": "应该使用新式的类",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

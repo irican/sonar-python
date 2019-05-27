@@ -1,5 +1,5 @@
 {
-  "title": "Parentheses should not be used after certain keywords",
+  "title": "某些关键字后不应使用括号",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

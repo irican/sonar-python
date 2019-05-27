@@ -1,12 +1,11 @@
-<p>The use of parentheses, even those not required to enforce a desired order of operations, can clarify the intent behind a piece of code. But
-redundant pairs of parentheses could be misleading, and should be removed. </p>
-<h2>Noncompliant Code Example</h2>
+<p>使用括号，即使那些不需要强制执行所需的操作顺序的括号，也可以讲清楚一段代码背后的意图。 但是多余的括号可能会产生误导，应该删除。 </p>
+<h2>不符合规范的代码示例</h2>
 <pre>
-return ((3))        # Noncompliant
-return ((x + 1))    # Noncompliant
-x = ((y / 2)) + 1   # Noncompliant
+return ((3))        # 不合规
+return ((x + 1))    # 不合规
+x = ((y / 2)) + 1   # 不合规
 </pre>
-<h2>Compliant Solution</h2>
+<h2>合规的解决方案</h2>
 <pre>
 return 3
 return (3)
@@ -15,4 +14,5 @@ return (x + 1)
 x = y / 2 + 1
 x = (y / 2) + 1
 </pre>
+
 

@@ -1,10 +1,9 @@
-<p>Use of the <code>exec</code> statement could be dangerous, and should be avoided. Moreover, the <code>exec</code> statement was removed in Python
-3.0. Instead, the built-in <code>exec()</code> function can be used.</p>
-<h2>Noncompliant Code Example</h2>
+<p>使用<code> exec </ code>语句可能很危险，应该避免使用。 此外，在Python 3.0中删除了<code> exec </ code>语句。 相反，可以使用内置的<code> exec()</ code>函数。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 exec 'print 1' # Noncompliant
 </pre>
-<h2>Compliant Solution</h2>
+<h2>符合规范的解决方案</h2>
 <pre>
 exec('print 1')
 </pre>

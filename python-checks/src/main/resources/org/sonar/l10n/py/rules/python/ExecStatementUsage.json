@@ -1,5 +1,5 @@
 {
-  "title": "The \"exec\" statement should not be used",
+  "title": "不应使用\"exec\"语句",
   "type": "BUG",
   "status": "ready",
   "remediation": {

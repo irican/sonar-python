@@ -1,5 +1,5 @@
 {
-  "title": "Backticks should not be used",
+  "title": "反引号不应该再使用了",
   "type": "BUG",
   "status": "ready",
   "remediation": {

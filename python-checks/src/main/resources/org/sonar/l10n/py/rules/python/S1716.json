@@ -1,5 +1,5 @@
 {
-  "title": "\"break\" and \"continue\" should not be used outside a loop",
+  "title": "\“break \”和\“continue \”不应该在循环外使用",
   "type": "BUG",
   "status": "ready",
   "remediation": {

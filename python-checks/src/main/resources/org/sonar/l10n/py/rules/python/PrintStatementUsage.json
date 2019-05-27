@@ -1,5 +1,5 @@
 {
-  "title": "The \"print\" statement should not be used",
+  "title": "不应使用 \"print\" 语句",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {

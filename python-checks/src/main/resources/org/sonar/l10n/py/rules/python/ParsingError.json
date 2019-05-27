@@ -1,5 +1,5 @@
 {
-  "title": "Python parser failure",
+  "title": "python解析器失败",
   "type": "CODE_SMELL",
   "status": "ready",
   "remediation": {
