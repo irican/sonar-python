@@ -3470,7 +3470,7 @@
   </rule>
   <rule>
     <key>W1662</key>
-    <name><![CDATA[使用绑定在解析（comprehension）范围内的变量Using a variable that was bound inside a comprehension]]></name>
+    <name><![CDATA[使用绑定在解析（comprehension）范围内的变量]]></name>
     <configKey>W1662</configKey>
     <description>
       <![CDATA[当一个绑定在解析（comprehension)处理程序内的变量，在解析（comprehension）处理程序之外使用时发出。 
