@@ -1,27 +1,27 @@
-<p>Executing SQL queries is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>执行SQL查询是不安全的。 在过去，它导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-9019">CVE-2018-9019</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7318">CVE-2018-7318</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5611">CVE-2017-5611</a> </li>
 </ul>
-<p><a href="https://www.owasp.org/index.php/SQL_Injection">SQL injection</a> is still one of the top 10 security vulnerabilities. Applications that
-execute SQL commands should sanitize any externally-provided values used in those commands. Failure to do so could allow an attacker to include input
-that changes the query so that unintended commands are executed, or sensitive data is exposed. Instead of trying to sanitize data by hand, SQL binding
-mechanisms should be used; they can be relied on to automatically perform a full sanitization.</p>
-<p>This rule flags the execution of SQL queries via Django methods which are not recommended by Django documentation as their use can result in an SQL
-injection. The goal is to guide security code reviews.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p><a href="https://www.owasp.org/index.php/SQL_Injection">SQL 注入</a> 仍然是十大安全漏洞之一。执行SQL命令
+的应用应该清除那些使用任何外部提供的值的命令。否则，攻击者可能会输入信息
+更改查询，以便执行意外的命令或暴露敏感数据。 SQL绑定不是尝试手动清理数据，而是
+应该使用工具； 可以依靠它们来自动执行全面清除。</p>
+<p>此规则标记通过Django文档不推荐的Django方法执行SQL查询，因为它们的使用会导致SQL
+注入。 目的是指导安全代码审查。</p>
+<h2>推荐的安全编码做法</h2>
 <ul>
-  <li> Avoid building queries manually using concatenation or formatting. If you do it anyway, do not include user input in this building process.
+  <li> 避免使用手动串联或格式构建查询。 如果仍然要执行此操作，请不要在此构建过程中包括用户输入。
   </li>
-  <li> Use <a href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet">parameterized queries, prepared statements, or stored
-  procedures</a> whenever possible. </li>
-  <li> Avoid executing SQL queries containing unsafe input in stored procedures or functions. </li>
-  <li> <a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">Sanitize</a> every unsafe input. </li>
-  <li> Follow <a href="https://docs.djangoproject.com/en/2.1/topics/security/#sql-injection-protection">Django best practices</a>. </li>
+  <li> 尽可能的使用<a href="https://www.owasp.org/index.php/Query_Parameterization_Cheat_Sheet">参数化查询，已存在的语句或存储的
+   程序</a>。 </li>
+  <li> 避免在存储过程或函数中执行包含不安全输入的SQL查询。 </li>
+  <li> 对每个不安全的输入进行<a href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">清除</a> 。 </li>
+  <li> 遵循<a href="https://docs.djangoproject.com/en/2.1/topics/security/#sql-injection-protection"> Django最佳做法</a>。 </li>
 </ul>
-<p>You can also reduce the impact of an attack by using a database account with low privileges.</p>
-<h2>Questionable Code Example</h2>
+<p>您还可以通过使用特权较低的数据库帐户来减少攻击的影响。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 from django.db import models
 from django.db import connection
@@ -36,24 +36,24 @@ class MyUser(models.Model):
 
 
 def query_my_user(request, params):
-    MyUser.objects.raw(request)  # Questionable
+    MyUser.objects.raw(request)  # 不符合规范的
 
-    # Parametrized queries
-    MyUser.objects.raw(request, params)  # Questionable.
+    # 参数化查询
+    MyUser.objects.raw(request, params)  # 不符合规范的.
 
     with connection.cursor() as cursor:
-        cursor.execute(request)  # Questionable
+        cursor.execute(request)  # 不符合规范的
 
     with connections['my_db'].cursor() as cursor:
-        cursor.execute(request)  # Questionable
+        cursor.execute(request)  # 不符合规范的
 
     # https://docs.djangoproject.com/en/2.1/ref/models/expressions/#raw-sql-expressions
 
-    RawSQL("select col from mytable where mycol = %s", ("test",))  # Questionable, See "Note"
+    RawSQL("select col from mytable where mycol = %s", ("test",))  # 不符合规范的， 详见 "注意"
 
     # https://docs.djangoproject.com/en/2.1/ref/models/querysets/#extra
 
-    MyUser.objects.extra(  # Questionable. calling the "extra" method, See "Note"
+    MyUser.objects.extra(  # 不符合规范的。调用“extra”方法，详见“注意” 
         select={
             'mycol': 'myothercol &gt; 10'
         },

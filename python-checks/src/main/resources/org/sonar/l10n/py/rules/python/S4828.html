@@ -1,26 +1,26 @@
-<p>Signalling processes is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>信令过程是不安全的。 在过去，它导致了以下漏洞：</p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-0390">CVE-2009-0390</a></p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2002-0839">CVE-2002-0839</a></p>
 <p> * <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-1671">CVE-2008-1671</a></p>
-<p>Sending signals without checking properly which process will receive it can cause a denial of service.</p>
-<h2>Ask Yourself Whether</h2>
-<p> * the PID of the process to which the signal will be sent is coming from an untrusted source. It could for example come from a world-writable
-file.</p>
-<p> * users who are asking for the signal to be sent might not have the permission to send those signals.</p>
-<p>You are at risk if you answered yes to any of these questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p> * If the signal is sent because of a user's request. Check that the user is allowed to send this signal. You can for example forbid it if the user
-doesn't own the process.</p>
-<p> * Secure the source from which the process PID is read.</p>
-<p> * Run the process sending the signals with minimal permissions.</p>
-<h2>Questionable Code Example</h2>
+<p>发送信号而未正确检查接收该信号的进程是否收到可能会导致拒绝服务。</p>
+<h2>询问自己是否</h2>
+<p> * 将要接受信号的进程的PID来自不受信任的来源。例如，它可能来自世界可写
+文件。</p>
+<p> * 要求发送信号的用户可能没有发送这些信号的权限。</p>
+<p>如果您对问题的回答为“是”，那么即存在风险。</p>
+<h2>推荐的安全编码做法</h2>
+<p> * 如果信号是由于一个用户请求而发送的。 检查该用户是否允许发送该信号。 例如，如果用户不拥有该进程，
+你可以禁止它。</p>
+<p> * 保护从中读取进程PID的源。</p>
+<p> * 以最小权限运行发送信号的进程。</p>
+<h2>不符合规范的代码示例</h2>
 <pre>
 import os
 
 def send_signal(pid, sig, pgid):
-    os.kill(pid, sig)  # Questionable
-    os.killpg(pgid, sig)  # Questionable
+    os.kill(pid, sig)  # 不符合规范的
+    os.killpg(pgid, sig)  # 不符合规范的
 </pre>
-<h2>See</h2>
-<p> * <a href="https://cwe.mitre.org/data/definitions/283.html">MITRE, CWE-283</a> - Unverified Ownership</p>
+<h2>请详见：</h2>
+<p> * <a href="https://cwe.mitre.org/data/definitions/283.html">MITRE, CWE-283</a> - 未经验证的所有权</p>
 

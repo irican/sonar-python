@@ -1,80 +1,79 @@
-<p>Hashing data is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>散列数据是不安全的。 过去，它导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-9233">CVE-2018-9233</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-5097">CVE-2013-5097</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-1051">CVE-2007-1051</a> </li>
 </ul>
-<p>Cryptographic hash functions are used to uniquely identify information without storing their original form. When not done properly, an attacker can
-steal the original information by guessing it (ex: with a <a href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow table</a>), or replace the
-original data with another one having the same hash.</p>
-<p>This rule flags code that initiates hashing.</p>
-<h2>Ask Yourself Whether</h2>
+<p>加密哈希函数用于唯一标识信息，而无需存储其原始形式。 如果处理不当，攻击者可以
+通过猜测来窃取原始信息（例如，使用 <a href="https://en.wikipedia.org/wiki/Rainbow_table">彩虹表</a>），或替换
+原始数据为另一个具有相同哈希值的数据。</p>
+<p>此规则标记了启动哈希的代码。 </p>
+<h2>询问自己是否</h2>
 <ul>
-  <li> the hashed value is used in a security context. </li>
-  <li> the hashing algorithm you are using is known to have vulnerabilities. </li>
-  <li> <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salts</a> are not automatically generated and applied by the hashing function.
+  <li> 哈希值在security context中使用。 </li>
+  <li> 您正在使用的哈希算法已知存在漏洞。 </li>
+  <li> 散列函数不会自动生成和应用 <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>。
   </li>
-  <li> any generated salts are cryptographically weak or not credential-specific. </li>
+  <li> 任何生成的salt在密码学上都很弱或不是特定于凭据的。 </li>
 </ul>
-<p>You are at risk if you answered yes to the first question and any of the following ones.</p>
-<h2>Recommended Secure Coding Practices</h2>
+<p>如果您对问题的回答为“是”，那么即存在风险。</p>
+<h2>推荐的安全编码做法</h2>
 <ul>
-  <li> for security related purposes, use only hashing algorithms which are <a
-  href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet">currently known to be strong</a>. Avoid using algorithms like MD5 and SHA1
-  completely in security contexts. </li>
-  <li> do not define your own hashing- or salt algorithms as they will most probably have flaws. </li>
-  <li> do not use algorithms that compute too quickly, like SHA256, as it must remain beyond modern hardware capabilities to perform brute force and
-  dictionary based attacks. </li>
-  <li> use a hashing algorithm that generate its own salts as part of the hashing. If you generate your own salts, make sure that a cryptographically
-  strong salt algorithm is used, that generated salts are credential-specific, and finally, that the salt is applied correctly before the hashing.
+  <li> 出于安全相关的目的，仅使用 <a href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet">目前已知很强的</a> 哈希算法。
+   避免使用MD5和SHA1之类的完全在security context中的算法。</li>
+  <li> 不要定义自己的哈希算法或salt算法，因为它们很可能存在缺陷。 </li>
+  <li> 不要使用计算速度过快的算法（例如SHA256），因为它必须超出现代硬件功能才能执行暴力破解和
+   基于字典的攻击。 </li>
+  <li> 使用哈希算法来生成自己的salt作为哈希的一部分。 如果您自己生成salt，请确保以加密方式
+   使用strong salt算法，生成的salt是凭据特定的，最后，在哈希之前正确应用了salt。
   </li>
-  <li> save both the salt and the hashed value in the relevant database record; during future validation operations, the salt and hash can then be
-  retrieved from the database. The hash is recalculated with the stored salt and the value being validated, and the result compared to the stored
-  hash. </li>
-  <li> the strength of hashing algorithms often decreases over time as hardware capabilities increase. Check regularly that the algorithms you are
-  using are still considered secure. If needed, rehash your data using a stronger algorithm. </li>
+  <li> 将salt和哈希值都保存在相关的数据库记录中； 在以后的验证操作中，salt和哈希可以
+   从数据库中检索。 使用存储的salt和验证的值重新计算哈希，并将结果与存储的哈希进行
+   比较。 </li>
+  <li> 随着硬件功能的增强，哈希算法的强度通常会随着时间的推移而降低。 定期检查您使用的算法
+   仍然被认为是安全的。 如果需要，请使用更强大的算法重新哈希化数据。 </li>
 </ul>
-<h2>See</h2>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="https://cwe.mitre.org/data/definitions/916.html">MITRE, CWE-916</a> - Use of Password Hash With Insufficient Computational Effort
+  <li> <a href="https://cwe.mitre.org/data/definitions/916.html">MITRE, CWE-916</a> - 计算工作量不足时使用密码哈希
   </li>
-  <li> <a href="http://cwe.mitre.org/data/definitions/759.html">MITRE, CWE-759</a> - Use of a One-Way Hash without a Salt </li>
-  <li> <a href="http://cwe.mitre.org/data/definitions/760.html">MITRE, CWE-760</a> - Use of a One-Way Hash with a Predictable Salt </li>
-  <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>
+  <li> <a href="http://cwe.mitre.org/data/definitions/759.html">MITRE, CWE-759</a> - 使用不含Salt的单向哈希 </li>
+  <li> <a href="http://cwe.mitre.org/data/definitions/760.html">MITRE, CWE-760</a> - 使用Predictable Salt的单向哈希 </li>
+  <li> OWASP 2017年十大类别 A3 - 敏感数据暴露 </li>
   <li> <a href="https://www.sans.org/top25-software-errors/#cat3">SANS Top 25</a> - Porous Defenses </li>
 </ul>
-<h2>Questionable Code Example</h2>
-<p><code>hashlib</code> module</p>
+<h2>不符合规范的代码示例</h2>
+<p><code>hashlib</code> 模块</p>
 <pre>
 import hashlib
 
 def hash_data(algorithm):
-    hashlib.new(algorithm)  # Questionable
+    hashlib.new(algorithm)  # 不符合规范的
 
-    hashlib.blake2b  # Questionable
-    hashlib.blake2s  # Questionable
-    hashlib.md5  # Questionable
-    hashlib.pbkdf2_hmac # Questionable
-    hashlib.sha1  # Questionable
-    hashlib.sha224  # Questionable
-    hashlib.sha256  # Questionable
-    hashlib.sha384  # Questionable
-    hashlib.sha3_224  # Questionable
-    hashlib.sha3_256  # Questionable
-    hashlib.sha3_384  # Questionable
-    hashlib.sha3_512  # Questionable
-    hashlib.sha512  # Questionable
-    hashlib.shake_128  # Questionable
-    hashlib.shake_256  # Questionable
-    hashlib.scrypt  # Questionable
+    hashlib.blake2b  # 不符合规范的
+    hashlib.blake2s  # 不符合规范的
+    hashlib.md5  # 不符合规范的
+    hashlib.pbkdf2_hmac # 不符合规范的
+    hashlib.sha1  # 不符合规范的
+    hashlib.sha224  # 不符合规范的
+    hashlib.sha256  # 不符合规范的
+    hashlib.sha384  # 不符合规范的
+    hashlib.sha3_224  # 不符合规范的
+    hashlib.sha3_256  # 不符合规范的
+    hashlib.sha3_384  # 不符合规范的
+    hashlib.sha3_512  # 不符合规范的
+    hashlib.sha512  # 不符合规范的
+    hashlib.shake_128  # 不符合规范的
+    hashlib.shake_256  # 不符合规范的
+    hashlib.scrypt  # 不符合规范的
 </pre>
-<p><code>cryptography</code> library</p>
+<p><code>cryptography</code> 库</p>
 <pre>
 from cryptography.hazmat.primitives import hashes
 
 
 def my_hash(algorithm):
-    hashes.Hash(algorithm)  # Questionable
+    hashes.Hash(algorithm)  # 不符合规范的
 </pre>
 <p>Django</p>
 <pre>
@@ -84,154 +83,154 @@ from django.contrib.auth.hashers import PBKDF2PasswordHasher, PBKDF2SHA1Password
 
 from django.contrib.auth.hashers import make_password
 
-# Changing default hashers
+# 更改默认哈希
 
 from django.conf import settings
 
 def update_settings(value):
-    settings.PASSWORD_HASHERS = value  # Questionable, and also a bad practice
+    settings.PASSWORD_HASHERS = value  # 不符合规范的，这也是一个坏习惯
 
 
-# Creating custom Hasher
+# 创建自定义哈希器
 
-class MyBasePasswordHasher(BasePasswordHasher):  # Questionable
+class MyBasePasswordHasher(BasePasswordHasher):  # 不符合规范的
     pass
 
-class MyPBKDF2PasswordHasher(PBKDF2PasswordHasher):  # Questionable
+class MyPBKDF2PasswordHasher(PBKDF2PasswordHasher):  # 不符合规范的
     pass
 
-class MyPBKDF2SHA1PasswordHasher(PBKDF2SHA1PasswordHasher):  # Questionable
+class MyPBKDF2SHA1PasswordHasher(PBKDF2SHA1PasswordHasher):  # 不符合规范的
     pass
 
-class MyArgon2PasswordHasher(Argon2PasswordHasher):  # Questionable
+class MyArgon2PasswordHasher(Argon2PasswordHasher):  # 不符合规范的
     pass
 
-class MyBCryptSHA256PasswordHasher(BCryptSHA256PasswordHasher):  # Questionable
+class MyBCryptSHA256PasswordHasher(BCryptSHA256PasswordHasher):  # 不符合规范的
     pass
 
-class MyBCryptPasswordHasher(BCryptPasswordHasher):  # Questionable
+class MyBCryptPasswordHasher(BCryptPasswordHasher):  # 不符合规范的
     pass
 
-class MySHA1PasswordHasher(SHA1PasswordHasher):  # Questionable
+class MySHA1PasswordHasher(SHA1PasswordHasher):  # 不符合规范的
     pass
 
-class MyMD5PasswordHasher(MD5PasswordHasher):  # Questionable
+class MyMD5PasswordHasher(MD5PasswordHasher):  # 不符合规范的
     pass
 
-class MyUnsaltedSHA1PasswordHasher(UnsaltedSHA1PasswordHasher):  # Questionable
+class MyUnsaltedSHA1PasswordHasher(UnsaltedSHA1PasswordHasher):  # 不符合规范的
     pass
 
-class MyUnsaltedMD5PasswordHasher(UnsaltedMD5PasswordHasher):  # Questionable
+class MyUnsaltedMD5PasswordHasher(UnsaltedMD5PasswordHasher):  # 不符合规范的
     pass
 
-class MyCryptPasswordHasher(CryptPasswordHasher):  # Questionable
+class MyCryptPasswordHasher(CryptPasswordHasher):  # 不符合规范的
     pass
 
 
-# Calling make_password with a specific hasher name or salt should be reviewed
+# 应该检查使用特定哈希器名称或salt的make_password
 def my_make_password(password, salt, hasher):
-    make_password(password, salt=salt)  # Questionable
-    make_password(password, hasher=hasher)  # Questionable
-    make_password(password, salt=salt, hasher=hasher)  # Questionable
+    make_password(password, salt=salt)  # 不符合规范的
+    make_password(password, hasher=hasher)  # 不符合规范的
+    make_password(password, salt=salt, hasher=hasher)  # 不符合规范的
 
-    # No issue is raised when only the password is provided, then only the configuration should be reviewed
-    make_password(password)  # OK
+    # 仅提供密码时不会引起任何问题，然后仅应检查配置
+    make_password(password)  # 符合规范的
 </pre>
 <p>Django's "global_settings.py" configuration file</p>
 <pre>
-# NOTE: The following code raises issues only if the file is named "global_settings.py". This is the default
-# name of Django configuration file
+# 注意：仅当文件名为“ global_settings.py”时，以下代码才会引发问题。 这是Django配置文件
+# 的默认名称
 
-PASSWORD_HASHERS=[]  # Questionable
+PASSWORD_HASHERS=[]  # 不符合规范的
 </pre>
 <p>Werkzeug</p>
 <pre>
 from werkzeug.security import generate_password_hash
 
 def hash_password(password):
-    generate_password_hash(password)  # Questionable
+    generate_password_hash(password)  # 不符合规范的
 </pre>
 <p><code>passlib</code> module</p>
 <pre>
 import passlib.hash
 
-passlib.hash.apr_md5_crypt  # Questionable
-passlib.hash.argon2  # Questionable
-passlib.hash.atlassian_pbkdf2_sha1  # Questionable
-passlib.hash.bcrypt  # Questionable
-passlib.hash.bcrypt_sha256  # Questionable
-passlib.hash.bigcrypt  # Questionable
-passlib.hash.bsd_nthash  # Questionable
-passlib.hash.bsdi_crypt  # Questionable
-passlib.hash.cisco_asa  # Questionable
-passlib.hash.cisco_pix  # Questionable
-passlib.hash.cisco_type7  # Questionable
-passlib.hash.crypt16  # Questionable
-passlib.hash.cta_pbkdf2_sha1  # Questionable
-passlib.hash.des_crypt  # Questionable
-passlib.hash.django_argon2  # Questionable
-passlib.hash.django_bcrypt  # Questionable
-passlib.hash.django_bcrypt_sha256  # Questionable
-passlib.hash.django_des_crypt  # Questionable
-passlib.hash.django_disabled  # Questionable
-passlib.hash.django_pbkdf2_sha1  # Questionable
-passlib.hash.django_pbkdf2_sha256  # Questionable
-passlib.hash.django_salted_md5  # Questionable
-passlib.hash.django_salted_sha1  # Questionable
-passlib.hash.dlitz_pbkdf2_sha1  # Questionable
-passlib.hash.fshp  # Questionable
-passlib.hash.grub_pbkdf2_sha512  # Questionable
-passlib.hash.hex_md4  # Questionable
-passlib.hash.hex_md5  # Questionable
-passlib.hash.hex_sha1  # Questionable
-passlib.hash.hex_sha256  # Questionable
-passlib.hash.hex_sha512  # Questionable
-passlib.hash.htdigest  # Questionable
-passlib.hash.ldap_bcrypt  # Questionable
-passlib.hash.ldap_bsdi_crypt  # Questionable
-passlib.hash.ldap_des_crypt  # Questionable
-passlib.hash.ldap_hex_md5  # Questionable
-passlib.hash.ldap_hex_sha1  # Questionable
-passlib.hash.ldap_md5  # Questionable
-passlib.hash.ldap_md5_crypt  # Questionable
-passlib.hash.ldap_pbkdf2_sha1  # Questionable
-passlib.hash.ldap_pbkdf2_sha256  # Questionable
-passlib.hash.ldap_pbkdf2_sha512  # Questionable
-passlib.hash.ldap_plaintext  # Questionable
-passlib.hash.ldap_salted_md5  # Questionable
-passlib.hash.ldap_salted_sha1  # Questionable
-passlib.hash.ldap_sha1  # Questionable
-passlib.hash.ldap_sha1_crypt  # Questionable
-passlib.hash.ldap_sha256_crypt  # Questionable
-passlib.hash.ldap_sha512_crypt  # Questionable
-passlib.hash.lmhash  # Questionable
-passlib.hash.md5_crypt  # Questionable
-passlib.hash.msdcc  # Questionable
-passlib.hash.msdcc2  # Questionable
-passlib.hash.mssql2000  # Questionable
-passlib.hash.mssql2005  # Questionable
-passlib.hash.mysql323  # Questionable
-passlib.hash.mysql41  # Questionable
-passlib.hash.nthash  # Questionable
-passlib.hash.oracle10  # Questionable
-passlib.hash.oracle11  # Questionable
-passlib.hash.pbkdf2_sha1  # Questionable
-passlib.hash.pbkdf2_sha256  # Questionable
-passlib.hash.pbkdf2_sha512  # Questionable
-passlib.hash.phpass  # Questionable
-passlib.hash.plaintext  # Questionable
-passlib.hash.postgres_md5  # Questionable
-passlib.hash.roundup_plaintext  # Questionable
-passlib.hash.scram  # Questionable
-passlib.hash.scrypt  # Questionable
-passlib.hash.sha1_crypt  # Questionable
-passlib.hash.sha256_crypt  # Questionable
-passlib.hash.sha512_crypt  # Questionable
-passlib.hash.sun_md5_crypt  # Questionable
-passlib.hash.unix_disabled  # Questionable
-passlib.hash.unix_fallback  # Questionable
+passlib.hash.apr_md5_crypt  # 不符合规范的
+passlib.hash.argon2  # 不符合规范的
+passlib.hash.atlassian_pbkdf2_sha1  # 不符合规范的
+passlib.hash.bcrypt  # 不符合规范的
+passlib.hash.bcrypt_sha256  # 不符合规范的
+passlib.hash.bigcrypt  # 不符合规范的
+passlib.hash.bsd_nthash  # 不符合规范的
+passlib.hash.bsdi_crypt  # 不符合规范的
+passlib.hash.cisco_asa  # 不符合规范的
+passlib.hash.cisco_pix  # 不符合规范的
+passlib.hash.cisco_type7  # 不符合规范的
+passlib.hash.crypt16  # 不符合规范的
+passlib.hash.cta_pbkdf2_sha1  # 不符合规范的
+passlib.hash.des_crypt  # 不符合规范的
+passlib.hash.django_argon2  # 不符合规范的
+passlib.hash.django_bcrypt  # 不符合规范的
+passlib.hash.django_bcrypt_sha256  # 不符合规范的
+passlib.hash.django_des_crypt  # 不符合规范的
+passlib.hash.django_disabled  # 不符合规范的
+passlib.hash.django_pbkdf2_sha1  # 不符合规范的
+passlib.hash.django_pbkdf2_sha256  # 不符合规范的
+passlib.hash.django_salted_md5  # 不符合规范的
+passlib.hash.django_salted_sha1  # 不符合规范的
+passlib.hash.dlitz_pbkdf2_sha1  # 不符合规范的
+passlib.hash.fshp  # 不符合规范的
+passlib.hash.grub_pbkdf2_sha512  # 不符合规范的
+passlib.hash.hex_md4  # 不符合规范的
+passlib.hash.hex_md5  # 不符合规范的
+passlib.hash.hex_sha1  # 不符合规范的
+passlib.hash.hex_sha256  # 不符合规范的
+passlib.hash.hex_sha512  # 不符合规范的
+passlib.hash.htdigest  # 不符合规范的
+passlib.hash.ldap_bcrypt  # 不符合规范的
+passlib.hash.ldap_bsdi_crypt  # 不符合规范的
+passlib.hash.ldap_des_crypt  # 不符合规范的
+passlib.hash.ldap_hex_md5  # 不符合规范的
+passlib.hash.ldap_hex_sha1  # 不符合规范的
+passlib.hash.ldap_md5  # 不符合规范的
+passlib.hash.ldap_md5_crypt  # 不符合规范的
+passlib.hash.ldap_pbkdf2_sha1  # 不符合规范的
+passlib.hash.ldap_pbkdf2_sha256  # 不符合规范的
+passlib.hash.ldap_pbkdf2_sha512  # 不符合规范的
+passlib.hash.ldap_plaintext  # 不符合规范的
+passlib.hash.ldap_salted_md5  # 不符合规范的
+passlib.hash.ldap_salted_sha1  # 不符合规范的
+passlib.hash.ldap_sha1  # 不符合规范的
+passlib.hash.ldap_sha1_crypt  # 不符合规范的
+passlib.hash.ldap_sha256_crypt  # 不符合规范的
+passlib.hash.ldap_sha512_crypt  # 不符合规范的
+passlib.hash.lmhash  # 不符合规范的
+passlib.hash.md5_crypt  # 不符合规范的
+passlib.hash.msdcc  # 不符合规范的
+passlib.hash.msdcc2  # 不符合规范的
+passlib.hash.mssql2000  # 不符合规范的
+passlib.hash.mssql2005  # 不符合规范的
+passlib.hash.mysql323  # 不符合规范的
+passlib.hash.mysql41  # 不符合规范的
+passlib.hash.nthash  # 不符合规范的
+passlib.hash.oracle10  # 不符合规范的
+passlib.hash.oracle11  # 不符合规范的
+passlib.hash.pbkdf2_sha1  # 不符合规范的
+passlib.hash.pbkdf2_sha256  # 不符合规范的
+passlib.hash.pbkdf2_sha512  # 不符合规范的
+passlib.hash.phpass  # 不符合规范的
+passlib.hash.plaintext  # 不符合规范的
+passlib.hash.postgres_md5  # 不符合规范的
+passlib.hash.roundup_plaintext  # 不符合规范的
+passlib.hash.scram  # 不符合规范的
+passlib.hash.scrypt  # 不符合规范的
+passlib.hash.sha1_crypt  # 不符合规范的
+passlib.hash.sha256_crypt  # 不符合规范的
+passlib.hash.sha512_crypt  # 不符合规范的
+passlib.hash.sun_md5_crypt  # 不符合规范的
+passlib.hash.unix_disabled  # 不符合规范的
+passlib.hash.unix_fallback  # 不符合规范的
 </pre>
-<p><code>pynacl</code> library</p>
+<p><code>pynacl</code> 库</p>
 <pre>
 import nacl.pwhash
 from nacl.pwhash.argon2i import str as argon2i_str, kdf as argon2i_kdf
@@ -240,25 +239,25 @@ from nacl.pwhash.scrypt import str as scrypt_str, kdf as scrypt_kdf
 
 from nacl.hash import blake2b, sha256, sha512
 
-blake2b  # Questionable
-sha256  # Questionable
-sha512  # Questionable
+blake2b  # 不符合规范的
+sha256  # 不符合规范的
+sha512  # 不符合规范的
 
-nacl.pwhash.str  # Questionable
-nacl.pwhash.scryptsalsa208sha256_str  # Questionable
-nacl.pwhash.kdf_scryptsalsa208sha256  # Questionable
-nacl.pwhash.argon2id.str  # Questionable
-nacl.pwhash.argon2i.str  # Questionable
-nacl.pwhash.scrypt.str  # Questionable
-nacl.pwhash.argon2id.kdf  # Questionable
-nacl.pwhash.argon2i.kdf  # Questionable
-nacl.pwhash.scrypt.kdf  # Questionable
+nacl.pwhash.str  # 不符合规范的
+nacl.pwhash.scryptsalsa208sha256_str  # 不符合规范的
+nacl.pwhash.kdf_scryptsalsa208sha256  # 不符合规范的
+nacl.pwhash.argon2id.str  # 不符合规范的
+nacl.pwhash.argon2i.str  # 不符合规范的
+nacl.pwhash.scrypt.str  # 不符合规范的
+nacl.pwhash.argon2id.kdf  # 不符合规范的
+nacl.pwhash.argon2i.kdf  # 不符合规范的
+nacl.pwhash.scrypt.kdf  # 不符合规范的
 
-argon2i_str  # Questionable
-argon2id_str  # Questionable
-scrypt_str  # Questionable
-argon2i_kdf  # Questionable
-argon2id_kdf  # Questionable
-scrypt_kdf  # Questionable
+argon2i_str  # 不符合规范的
+argon2id_str  # 不符合规范的
+scrypt_str  # 不符合规范的
+argon2i_kdf  # 不符合规范的
+argon2id_kdf  # 不符合规范的
+scrypt_kdf  # 不符合规范的
 </pre>
 

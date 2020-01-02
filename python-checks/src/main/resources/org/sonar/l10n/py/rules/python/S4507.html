@@ -1,47 +1,47 @@
-<p>Delivering code in production with debug features activated is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>在激活调试功能的情况下交付产品的代码是不安全的。 在过去，它导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-1999007">CVE-2018-1999007</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-5306">CVE-2015-5306</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-2006">CVE-2013-2006</a> </li>
 </ul>
-<p>An application's debug features enable developers to find bugs more easily. It often gives access to detailed information on both the system
-running the application and users. Sometime it even enables the execution of custom commands. Thus deploying on production servers an application
-which has debug features activated is extremely dangerous.</p>
-<h2>Ask Yourself Whether</h2>
+<p>应用程序的调试功能使开发人员可以更轻松地查找错误。 它通常可以使系统程序管理员和使用者都可以
+访问有关系统的详细信息。 有时甚至可以执行自定义命令。 因此在产品服务器上部署激活了调试功能的应用程序
+非常危险。</p>
+<h2>询问自己是否</h2>
 <ul>
-  <li> the code or configuration enabling the application debug features is deployed on production servers. </li>
-  <li> the application runs by default with debug features activated. </li>
+  <li> 启用应用程序调试功能的代码或配置已部署在生产服务器上。 </li>
+  <li> 默认情况下，该应用程序运行并激活了调试功能。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of these questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>The application should run by default in the most secure mode, i.e. as on production servers. This is to prevent any mistake. Enabling debug
-features should be explicitly asked via a command line argument, an environment variable or a configuration file.</p>
-<p>Check that every debug feature is controlled by only very few configuration variables: logging, exception/error handling, access control, etc... It
-is otherwise very easy to forget one of them.</p>
-<p>Do not enable debug features on production servers.</p>
-<h2>See</h2>
+<p>如果您对问题的回答为“是”，那么即存在风险。</p>
+<h2>推荐的安全编码做法</h2>
+<p>默认情况下，应用程序应以最安全的模式运行，即在产品服务器上运行。 这是为了防止任何错误。 启用调试
+应该通过命令行参数，环境变量或配置文件显式询问。</p>
+<p>检查每个仅有很少的配置变量控制的调试功能：日志记录，异常/错误处理，访问控制等...
+否则很容易忘记它们之中的一个或几个。</p>
+<p>不要在产品服务器上启用调试功能。</p>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="http://cwe.mitre.org/data/definitions/489.html">MITRE, CWE-489</a> - Leftover Debug Code </li>
-  <li> <a href="http://cwe.mitre.org/data/definitions/215.html">MITRE, CWE-215</a> - Information Exposure Through Debug Information </li>
-  <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>
+  <li> <a href="http://cwe.mitre.org/data/definitions/489.html">MITRE, CWE-489</a> - 剩余的调试代码 </li>
+  <li> <a href="http://cwe.mitre.org/data/definitions/215.html">MITRE, CWE-215</a> - 通过调试信息暴露信息 </li>
+  <li> OWASP 2017年十大类别 A3 - 敏感数据暴露 </li>
 </ul>
-<h2>Questionable Code Example</h2>
+<h2>不符合规范的代码示例</h2>
 <p>Django</p>
 <pre>
 from django.conf import settings
 
-settings.configure(DEBUG=True)  # Questionable when set to True
-settings.configure(DEBUG_PROPAGATE_EXCEPTIONS=True)  # Questionable when set to True
+settings.configure(DEBUG=True)  # 当设置为true时是不符合规范的
+settings.configure(DEBUG_PROPAGATE_EXCEPTIONS=True)  # 当设置为true时是不符合规范的
 
 def custom_config(config):
-    settings.configure(default_settings=config, DEBUG=True)  # Questionable
+    settings.configure(default_settings=config, DEBUG=True)  # 不符合规范的
 </pre>
 <p>Django's "global_settings.py" configuration file</p>
 <pre>
-# NOTE: The following code raises issues only if the file is named "global_settings.py". This is the default
-# name of Django configuration file
+# 注意：仅当文件名为“global_settings.py”时，以下代码才会引发问题。 这是Django配置
+# 文件的默认名称
 
-DEBUG = True  # Questionable
-DEBUG_PROPAGATE_EXCEPTIONS = True  # Questionable
+DEBUG = True  # 不符合规范的
+DEBUG_PROPAGATE_EXCEPTIONS = True  # 不符合规范的
 </pre>
 

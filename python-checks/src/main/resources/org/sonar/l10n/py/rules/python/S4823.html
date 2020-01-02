@@ -1,12 +1,11 @@
-<p>Using command line arguments is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>使用命令行参数是不安全的。 在过去，它导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-7281">CVE-2018-7281</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2018-12326">CVE-2018-12326</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3198">CVE-2011-3198</a> </li>
 </ul>
-<p>Command line arguments can be dangerous just like any other user input. They should never be used without being first validated and sanitized.</p>
-<p>Remember also that any user can retrieve the list of processes running on a system, which makes the arguments provided to them visible. Thus
-passing sensitive information via command line arguments should be considered as insecure.</p>
-<p>This rule raises an issue on every reference to <code>sys.argv</code>, call to <code>optparse.OptionParser()</code> or a call to
-<code>argparse.ArgumentParser()</code>. The goal is to guide security code reviews.</p>
-
+<p>命令行参数可能像其他用户输入一样危险。 未经事先验证和清除，切勿使用它们。</p>
+<p>还要记住，任何用户都可以检索在系统上运行的进程的列表，从而使提供给他们的参数可见。 从而
+通过命令行参数传递敏感信息应该被认为是不安全的。</p>
+<p>该规则在每次对 <code>sys.argv</code> 的引用, 对 <code>optparse.OptionParser()</code> 的调用或者对
+<code>argparse.ArgumentParser()</code>的调用时会报出安全问题。 目的是指导安全代码审查。</p>

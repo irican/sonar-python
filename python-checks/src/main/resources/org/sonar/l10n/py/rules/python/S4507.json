@@ -1,5 +1,5 @@
 {
-  "title": "Delivering code in production with debug features activated is security-sensitive",
+  "title": "在激活调试功能的情况下交付产品的代码是不安全的",
   "type": "SECURITY_HOTSPOT",
   "status": "ready",
   "remediation": {

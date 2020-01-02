@@ -1,71 +1,71 @@
-<p>Exposing HTTP endpoints is security-sensitive. It has led in the past to the following vulnerabilities:</p>
+<p>暴露HTTP端点是不安全的。 在过去，它导致了以下漏洞：</p>
 <ul>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-3072">CVE-2016-3072</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3175">CVE-2015-3175</a> </li>
   <li> <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0218">CVE-2003-0218</a> </li>
 </ul>
-<p>HTTP endpoints are webservices' main entrypoint. Attackers will take advantage of any vulnerability by sending crafted inputs for headers
-(including cookies), body and URI. No input should be trusted and extreme care should be taken with all returned value (header, body and status
-code).</p>
-<p>This rule flags code which creates HTTP endpoint. It guides security code reviews to security-sensitive code.</p>
-<h2>Ask Yourself Whether</h2>
+<p>HTTP端点是Web服务的主要入口点。 攻击者将通过发送手工输入的标头（包括cookie），正文和
+URI来利用任何漏洞。 不应信任任何输入，并应特别注意所有返回值（标头，正文和状态
+码）。</p>
+<p>此规则标记创建HTTP端点的代码。 它将安全代码审查引导到对安全敏感的代码。</p>
+<h2>询问自己是否</h2>
 <ul>
-  <li> an input is not sanitized before being used. This includes any value coming from the URI, header, body and cookies. </li>
-  <li> the response contains some unsafe data. for example the input could come from a database which contains user inputs. Check the response's
-  headers, cookies, body and status code. </li>
-  <li> the response contains some sensitive information which the user shouldn't have access to. </li>
+  <li> 输入在使用前未经过清理。 这包括来自URI，标头，正文和cookie的任何值。 </li>
+  <li> 响应中包含一些不安全的数据。 例如，输入可能来自包含用户输入的数据库。 检查回应
+   标头，Cookie，正文和状态代码。 </li>
+  <li> 响应中包含一些用户不应该访问的敏感信息。 </li>
 </ul>
-<p>no access control prevents attackers from successfully performing a forbidden request.</p>
+<p>没有能阻止攻击者成功执行禁止请求的访问控制。</p>
 <ul>
-  <li> an attacker can get sensitive information by analyzing the returned errors. For example, a web service can expose the existence of user
-  accounts by returning 403 (Forbidden) instead of 404 (Not Found) when an attacker ask for them. </li>
+  <li> 攻击者可以通过分析返回的错误来获取敏感信息。 例如，当攻击者询问时，Web服务会返回403（禁止）
+   而不是404（未找到）从而暴露用户的账户。 </li>
 </ul>
-<p>You are at risk if you answered yes to any of those questions.</p>
-<h2>Recommended Secure Coding Practices</h2>
-<p>Never trust any part of the request to be safe. Make sure that the URI, header and body are properly <a
-href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">sanitized</a> before being used. Their content, length, encoding, name (ex: name
-of URL query parameters) should be checked. Validate that the values are in a predefined whitelist. The opposite, i.e. searching for dangerous values
-in a given input, can easily miss some of them.</p>
-<p>Do not rely solely on cookies when you implement your authentication and permission logic. Use additional protections such as <a
-href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet">CSRF</a> tokens when possible.</p>
-<p>Do not expose sensitive information in your response. If the endpoint serves files, limit the access to a dedicated directory. <a
-href="https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Cookies">Protect your sensitive cookies</a> so that client-side javascript cannot
-read or modify them.</p>
-<p>Sanitize all values before returning them in a response, be it in the body, header or status code. Special care should be taken to avoid the
-following attacks:</p>
+<p>如果您对上述任何一个问题的回答为“是”，则有风险。</p>
+<h2>推荐的安全编码做法</h2>
+<p>永远不要相信请求的任何部分都是安全的。 确保URI，标头和正文在使用之前都经过了<a
+href="https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet">清理（sanitized）</a>。 它们的内容，长度，编码，名称（例如：
+URL查询参数的名称）都属于被检查。 验证值是否在预定义的白名单中。 相反，即在给定的输入下寻找危险值，
+很容易会错过其中的一些。</p>
+<p>实现身份验证和权限逻辑时，请勿仅依赖Cookie。 在可能的情况下使用其他保护措施，例如<a
+href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet">CSRF</a>令牌。</p>
+<p>不要在响应中暴露敏感信息。 如果端点提供文件，请限制对专用目录的访问。 <a
+href="https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Cookies">保护您的敏感 cookie </a>，以便客户端JavaScript无法
+阅读或修改它们。</p>
+<p>在响应中返回所有值之前，请对所有值进行清理，无论是正文，标头还是状态码。 应特别注意避免
+以下攻击：</p>
 <ul>
-  <li> <a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">Cross-site Scripting (XSS)</a>, which happens when
-  an unsafe value is included in an HTML page. </li>
-  <li> <a href="https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet">Unvalidated redirects</a> which can happen when the
-  <code>Location</code> header is compromised. </li>
+  <li> <a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">跨站脚本 (XSS)</a>， 在HTML页面中
+  会包含不安全的值。 </li>
+  <li> <a href="https://www.owasp.org/index.php/Unvalidated_Redirects_and_Forwards_Cheat_Sheet">未经验证的重定向</a> ，在
+  <code>Location</code> 标头遭到破坏时会发生 </li>
 </ul>
-<p>Restrict security-sensitive actions, such as file upload, to authenticated users.</p>
-<p>Be careful when errors are returned to the client, as they can provide sensitive information. Use 404 (Not Found) instead of 403 (Forbidden) when
-the existence of a resource is sensitive.</p>
-<h2>See</h2>
+<p>将对安全敏感的操作（例如文件上传）限制为经过身份验证的用户。 </p>
+<p>当错误返回给客户端时要小心，因为它们会提供敏感信息。 当某资源是敏感信息时使用404（未找到）
+而不是403（禁止）。</p>
+<h2>请详见</h2>
 <ul>
-  <li> <a href="http://cwe.mitre.org/data/definitions/20.html">MITRE, CWE-20</a> - Improper Input Validation </li>
-  <li> <a href="https://cwe.mitre.org/data/definitions/352.html">MITRE, CWE-352</a> - Cross-Site Request Forgery (CSRF) </li>
-  <li> <a href="https://cwe.mitre.org/data/definitions/79.html">MITRE, CWE-79</a> - Improper Neutralization of Input During Web Page Generation
-  ('Cross-site Scripting') </li>
-  <li> <a href="https://cwe.mitre.org/data/definitions/22.html">MITRE, CWE-22</a> - Improper Limitation of a Pathname to a Restricted Directory ('Path
-  Traversal') </li>
-  <li> OWASP Top 10 2017 Category A1 - Injection </li>
-  <li> OWASP Top 10 2017 Category A3 - Sensitive Data Exposure </li>
-  <li> OWASP Top 10 2017 Category A7 - Cross-Site Scripting (XSS) </li>
-  <li> <a href="https://www.sans.org/top25-software-errors/#cat1">SANS Top 25</a> - Insecure Interaction Between Components </li>
-  <li> <a href="https://www.sans.org/top25-software-errors/#cat2">SANS Top 25</a> - Risky Resource Management </li>
+  <li> <a href="http://cwe.mitre.org/data/definitions/20.html">MITRE, CWE-20</a> - 不正确的输入验证 </li>
+  <li> <a href="https://cwe.mitre.org/data/definitions/352.html">MITRE, CWE-352</a> - 跨站请求伪造 (CSRF) </li>
+  <li> <a href="https://cwe.mitre.org/data/definitions/79.html">MITRE, CWE-79</a> - 网页生成过程中中和了不正确的输入
+  ('跨站脚本') </li>
+  <li> <a href="https://cwe.mitre.org/data/definitions/22.html">MITRE, CWE-22</a> - 路径名到受限目录的限制不当 ('路径
+  遍历') </li>
+  <li> OWASP 2017年十大类别 A1 - 注入 </li>
+  <li> OWASP 2017年十大类别 A3 - 敏感数据暴露 </li>
+  <li> OWASP 2017年十大类别 A7 - 跨站脚本 (XSS) </li>
+  <li> <a href="https://www.sans.org/top25-software-errors/#cat1">SANS Top 25</a> - 组件之间的不安全交互 </li>
+  <li> <a href="https://www.sans.org/top25-software-errors/#cat2">SANS Top 25</a> - 风险资源管理 </li>
   <li> <a href="https://www.sans.org/top25-software-errors/#cat3">SANS Top 25</a> - Porous Defenses </li>
 </ul>
-<h2>Questionable Code Example</h2>
-<p>Django endpoint declaration</p>
+<h2>不符合规范的代码示例</h2>
+<p>Django 端点示例</p>
 <pre>
 from django.urls import path, re_path
 
 def declare_views(views):
     return [
-        path('', views['index']),  # Questionable
-        re_path(r'^about/[0-9]*/$', views['about']),  # Questionable
+        path('', views['index']),  # 不符合规范的
+        re_path(r'^about/[0-9]*/$', views['about']),  # 不符合规范的
     ]
 </pre>
 
